@@ -1,0 +1,201 @@
+@import "../sass/utilities/mixins";
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  background: #7B42FE;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7B42FE;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  // Variable
+  background-color: #363058;
+  background-color: #363058;
+  color: whitesmoke;
+}
+
+.app {
+  //min-width: 340px;
+  width: 360px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  // Variable
+  background: rgb(37,31,69);
+  background: linear-gradient(155deg, rgba(37,31,69,1) 0%, rgba(29,31,37,1) 40%);
+  //border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden;
+
+  &__header {
+    margin: 10px 0;
+
+    &-title {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+    &-description {
+      font-size: 16px;
+      font-weight: 300;
+      color: #a2a2a2;
+
+      span {
+        font-weight: bold;
+        color: #7B42FE;
+      }
+    }
+  }
+
+  &__body {
+    margin-bottom: 30px;
+
+    &-formContainer {
+      margin: 30px 0;
+
+      &-form {
+        display: flex;
+
+        &-input {
+          background-color: #2A2E3D;
+          height: 40px;
+          border-radius: 8px;
+          border: none;
+          padding: 0 10px;
+          color: whitesmoke;
+          margin-right: 10px;
+          flex-grow: 1;
+        }
+
+        &-submit {
+          @include iconButton(40px, 40px, #7B42FE, whitesmoke, 8px);
+        }
+      }
+    }
+    &-listContainer {
+      min-height: 200px;
+      max-height: 360px;
+      overflow-y: scroll;
+
+      &-list {
+        list-style: none;
+        display: grid;
+        row-gap: 10px;
+        padding-right: 10px;
+        margin-bottom: 20px;
+
+        &-item {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          column-gap: 10px;
+          //display: grid;
+          //grid-template-columns: ;
+          //background-color: #2A2E3D;
+          //border-radius: 8px;
+
+          &-completeStatus {
+            height: 26px;
+            width: 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            font-size: 16px;
+            border: 2px solid #2A2E3D;
+            border-radius: 8px;
+            //margin-right: 10px;
+          }
+
+          &-contentContainer {
+
+            display: flex;
+            flex-direction: column;
+
+            //position: relative;
+            flex-grow: 1;
+            //width: 90%;
+
+
+            &-title {
+              background-color: #2A2E3D;
+              border-radius: 8px;
+              padding: 10px;
+              font-size: 14px;
+            }
+
+            &-buttonsContainer {
+              display: flex;
+              justify-content: flex-end;
+              margin-top: 5px;
+
+              &-button {
+                @include iconButton(30px, 30px, transparent, #7B42FE, 8px);
+                border: 1px solid #7B42FE;
+                margin-left: 5px;
+              }
+
+              &-button.disable {
+                //background-color: gray;
+                border-color: gray;
+                color: gray;
+              }
+            }
+          }
+        }
+
+        &-item.completed {
+          .app__body-listContainer-list-item-completeStatus {
+            background-color: #7DFFA4;
+            color: #3e7554;
+            border: none;
+          }
+
+          .app__body-listContainer-list-item-contentContainer-title {
+            text-decoration: line-through;
+            color: gray;
+          }
+        }
+
+
+
+      }
+    }
+  }
+
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: gray;
+    width: 100%;
+    padding: 3px 0;
+
+    &-copy {
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+}

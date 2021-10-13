@@ -1,0 +1,25 @@
+{
+  "name": "konkurs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "dev": "nodemon . & npm run scss",
+    "scss": "sass --style=compressed  --no-source-map --watch public/sass/main.scss public/stylesheets/main.min.css"
+  },
+  "keywords": [],
+  "author": "Karl Bessart von Trier",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.4.1",
+    "sass": "^1.42.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+          integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/main.min.css">
+</head>
+<body>
+<div class="app">
+    <div class="app__header">
+        <h1 class="app__header-title">Today's schedule</h1>
+        <p class="app__header-description">You have <span id="todo-count">0</span> active tasks</p>
+    </div>
+    <div class="app__body">
+        <div class="app__body-formContainer">
+            <form class="app__body-formContainer-form" id="create-todo-form">
+                <input type="text" class="app__body-formContainer-form-input" id="input-title" placeholder="Enter todo here">
+                <button class="app__body-formContainer-form-submit" type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+        <div class="app__body-listContainer">
+            <ul id="todo-list" class="app__body-listContainer-list"></ul>
+        </div>
+    </div>
+    <div class="app__footer">
+        <p class="app__footer-copy">Copyright 2021 &copy; Konkurs <b>MegaK</b></p>
+    </div>
+</div>
+
+<script src="javascripts/main.js"></script>
+</body>
+</html>
