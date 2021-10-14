@@ -8,8 +8,8 @@ async function getTodosFromDatabase() {
     const content = await readFile(path.join(DATA_PATH, 'database.json'));
     return JSON.parse(content);
   } catch(error) {
-    await writeFile(path.join(DATA_PATH, 'database.json'), JSON.stringify({}));
-    return {};
+    await writeFile(path.join(DATA_PATH, 'database.json'), JSON.stringify([]));
+    return [];
   }
 }
 

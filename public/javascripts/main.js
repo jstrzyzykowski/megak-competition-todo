@@ -6,7 +6,7 @@ const input = document.getElementById('input-title');
 const loader = document.getElementById('loader');
 
 // Variables
-let state = {};
+let state = [];
 
 // Functions
 function createAndAddTodoElement(delayMs, {id, title: todoTitle, completed}) {
@@ -167,12 +167,17 @@ function renderView() {
   todoList.innerHTML = '';
   let notCompletedCount = 0;
   let delayMs = 0;
-  for (const [key, value] of Object.entries(state)) {
-    const {title, completed} = value;
-    if(!completed) notCompletedCount += 1;
-    createAndAddTodoElement(delayMs,{id: key, title, completed});
-    delayMs += 0.1;
+  for (const todo of state) {
+    if(!todo.completed) notCompletedCount += 1;
+    createAndAddTodoElement(delayMs, {...todo});
   }
+  delayMs += 0.1;
+  // for (const [key, value] of Object.entries(state)) {
+  //   const {title, completed} = value;
+  //   if(!completed) notCompletedCount += 1;
+  //   createAndAddTodoElement(delayMs,{id: key, title, completed});
+  //   delayMs += 0.1;
+  // }
   todoCount.innerText = notCompletedCount;
   loader.style.display = 'none';
 }
