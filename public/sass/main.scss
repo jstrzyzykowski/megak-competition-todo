@@ -48,6 +48,43 @@ button {
     border-radius: 20px;
   }
 
+  &__loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    //display: none;
+    z-index: 10;
+
+    &-icon {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      //background-color: gray;
+      border: 6px solid #2A2E3D;
+      border-top-color: #7B42FE;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    &-text {
+      font-size: 14px;
+      color: whitesmoke;
+    }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+  }
+
   &__header {
     margin: 10px 0;
 
@@ -69,6 +106,18 @@ button {
 
   &__body {
     margin-bottom: 30px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 20px;
+      width: calc(100% - 8px);
+      background: rgb(29,31,37);
+      background: linear-gradient(0deg, rgba(29,31,37,1) 0%, rgba(29,31,37,0) 100%);
+    }
 
     &-formContainer {
       margin: 30px 0;
@@ -97,6 +146,8 @@ button {
       max-height: 360px;
       overflow-y: scroll;
 
+
+
       &-list {
         list-style: none;
         display: grid;
@@ -108,6 +159,19 @@ button {
           display: grid;
           grid-template-columns: auto 1fr;
           column-gap: 10px;
+          position: relative;
+          animation: show 0.2s ease-out both;
+
+          @keyframes show {
+            from {
+              transform: translateY(-4px);
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
 
           &-completeStatus {
             height: 26px;

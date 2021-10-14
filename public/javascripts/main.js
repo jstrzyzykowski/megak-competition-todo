@@ -3,18 +3,17 @@ const todoList = document.getElementById('todo-list');
 const todoCount = document.getElementById('todo-count');
 const form = document.getElementById('create-todo-form');
 const input = document.getElementById('input-title');
-const toolbar = document.getElementById('toolbar');
-const toolbarText = document.getElementById('toolbar-text');
-
+const loader = document.getElementById('loader');
 
 // Variables
-let state = [];
+let state = {};
 
 // Functions
-function createAndAddTodoElement({id, title: todoTitle, completed}) {
+function createAndAddTodoElement(delayMs, {id, title: todoTitle, completed}) {
   const listItem = document.createElement('li');
   listItem.className = `app__body-listContainer-list-item ${completed ? 'completed' : ''}`;
   listItem.dataset.key = id;
+  listItem.style.animationDelay = `${delayMs}s`;
 
   const completeStatus = document.createElement('div');
   completeStatus.className = 'app__body-listContainer-list-item-completeStatus';
@@ -29,6 +28,7 @@ function createAndAddTodoElement({id, title: todoTitle, completed}) {
   editForm.style.display = 'none';
   editForm.addEventListener('submit', (event) => {
     event.preventDefault();
+    loader.style.display = 'flex';
     fetch(`/api/todo/${id}`, {
       method: "PATCH",
       body: JSON.stringify({ title: editInputText.value, completed }),
@@ -86,6 +86,7 @@ function createAndAddTodoElement({id, title: todoTitle, completed}) {
   if(!completed) completeBtn.innerHTML = '<i class="fas fa-check"></i>';
   else completeBtn.innerHTML = '<i class="fas fa-times"></i>';
   completeBtn.addEventListener('click', () => {
+    loader.style.display = 'flex';
     fetch(`/api/todo/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({ title: todoTitle, completed: !completed }),
@@ -112,6 +113,7 @@ function createAndAddTodoElement({id, title: todoTitle, completed}) {
   removeBtn.className = 'app__body-listContainer-list-item-contentContainer-buttonsContainer-button';
   removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
   removeBtn.addEventListener('click', () => {
+    loader.style.display = 'flex';
     fetch(`/api/todo/${id}`, {
       method: "DELETE",
     }).then((response) => response.json()).then((data) => {
@@ -133,15 +135,19 @@ function createAndAddTodoElement({id, title: todoTitle, completed}) {
 
 // Listeners
 window.addEventListener('load', () => {
-  fetch('/api/todos').then((response) => response.json()).then((data) => {
+  loader.style.display = 'flex';
+  fetch('/api/todos')
+    .then((response) => response.json())
+    .then((data) => {
     state = data;
     renderView();
-  });
+  })
+    .catch((error) => console.log(error.message));
 })
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
+  loader.style.display = 'flex';
   fetch('/api/todo/create', {
     method: 'POST',
     body: JSON.stringify({title: input.value}),
@@ -160,10 +166,13 @@ form.addEventListener('submit', (event) => {
 function renderView() {
   todoList.innerHTML = '';
   let notCompletedCount = 0;
+  let delayMs = 0;
   for (const [key, value] of Object.entries(state)) {
     const {title, completed} = value;
     if(!completed) notCompletedCount += 1;
-    createAndAddTodoElement({id: key, title, completed});
+    createAndAddTodoElement(delayMs,{id: key, title, completed});
+    delayMs += 0.1;
   }
   todoCount.innerText = notCompletedCount;
+  loader.style.display = 'none';
 }
