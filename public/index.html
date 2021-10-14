@@ -16,6 +16,9 @@
 </head>
 <body>
 <div class="app">
+    <div class="app__toolbar" id="toolbar">
+        <p class="app__toolbar-text" id="toolbar-text"></p>
+    </div>
     <div class="app__header">
         <h1 class="app__header-title">Today's schedule</h1>
         <p class="app__header-description">You have <span id="todo-count">0</span> active tasks</p>
@@ -23,7 +26,7 @@
     <div class="app__body">
         <div class="app__body-formContainer">
             <form class="app__body-formContainer-form" id="create-todo-form">
-                <input type="text" class="app__body-formContainer-form-input" id="input-title" placeholder="Enter todo here">
+                <input type="text" class="app__body-formContainer-form-input" id="input-title" placeholder="Enter todo here" required minlength="5" maxlength="50">
                 <button class="app__body-formContainer-form-submit" type="submit"><i class="fas fa-paper-plane"></i></button>
             </form>
         </div>

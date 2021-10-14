@@ -1,24 +1,5 @@
 @import "../sass/utilities/mixins";
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  background: #7B42FE;
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #7B42FE;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -30,26 +11,42 @@ html {
 }
 
 body {
-  // Variable
-  background-color: #363058;
   background-color: #363058;
   color: whitesmoke;
 }
 
+button {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 .app {
-  //min-width: 340px;
-  width: 360px;
+  height: 100%;
+  width: 100%;
+  //width: 360px;
+  //position: absolute;
+  //top: 40%;
+  //left: 50%;
+  //transform: translate(-50%, -50%);
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   padding: 30px;
-  // Variable
   background: rgb(37,31,69);
-  background: linear-gradient(155deg, rgba(37,31,69,1) 0%, rgba(29,31,37,1) 40%);
-  //border: 2px solid black;
-  border-radius: 20px;
+  background: linear-gradient(155deg, rgba(37,31,69,1) 0%, rgba(29,31,37,1) 30%);
+  //border-radius: 20px;
   overflow: hidden;
+
+  @include sm-screen {
+    height: unset;
+    width: 360px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+  }
 
   &__header {
     margin: 10px 0;
@@ -111,10 +108,6 @@ body {
           display: grid;
           grid-template-columns: auto 1fr;
           column-gap: 10px;
-          //display: grid;
-          //grid-template-columns: ;
-          //background-color: #2A2E3D;
-          //border-radius: 8px;
 
           &-completeStatus {
             height: 26px;
@@ -126,18 +119,37 @@ body {
             font-size: 16px;
             border: 2px solid #2A2E3D;
             border-radius: 8px;
-            //margin-right: 10px;
           }
 
-          &-contentContainer {
-
+          &-editForm {
             display: flex;
             flex-direction: column;
 
-            //position: relative;
-            flex-grow: 1;
-            //width: 90%;
+            &-inputText {
+              flex-grow: 1;
+              border: none;
+              border-radius: 8px;
+              padding: 10px;
+              font-size: 14px;
+            }
 
+            &-editButtonsContainer {
+              display: flex;
+              justify-content: flex-end;
+              margin-top: 5px;
+
+              &-button {
+                @include iconButton(30px, 30px, transparent, #7B42FE, 8px);
+                border: 1px solid #7B42FE;
+                margin-left: 5px;
+              }
+            }
+          }
+
+          &-contentContainer {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
 
             &-title {
               background-color: #2A2E3D;
@@ -158,7 +170,6 @@ body {
               }
 
               &-button.disable {
-                //background-color: gray;
                 border-color: gray;
                 color: gray;
               }
@@ -178,9 +189,6 @@ body {
             color: gray;
           }
         }
-
-
-
       }
     }
   }
@@ -198,4 +206,21 @@ body {
       text-align: center;
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7B42FE;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7B42FE;
 }
