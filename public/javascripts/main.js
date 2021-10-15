@@ -177,7 +177,6 @@ function createTodos() {
     delayMs += 0.07;
   }
 
-  console.log('notCompletedCount', notCompletedCount);
   todoCount.innerText = `${notCompletedCount}`;
 }
 
