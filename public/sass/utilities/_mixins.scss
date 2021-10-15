@@ -2,14 +2,6 @@
   @media (min-width: 768px) { @content; }
 }
 
-//@mixin md-screen {
-//  @media (min-width: 1021px) { @content; }
-//}
-//
-//@mixin lg-screen {
-//  @media (min-width: 1171px) { @content; }
-//}
-
 @mixin iconButton($width, $height, $background-color, $color, $border-radius) {
   width: $width;
   height: $height;

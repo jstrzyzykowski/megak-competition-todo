@@ -7,7 +7,7 @@ async function getTodosFromDatabase() {
   try {
     const content = await readFile(path.join(DATA_PATH, 'database.json'));
     return JSON.parse(content);
-  } catch(error) {
+  } catch (error) {
     await writeFile(path.join(DATA_PATH, 'database.json'), JSON.stringify([]));
     return [];
   }
@@ -16,8 +16,7 @@ async function getTodosFromDatabase() {
 async function saveTodosIntoDatabase(todos) {
   try {
     await writeFile(path.join(DATA_PATH, 'database.json'), JSON.stringify(todos));
-    console.log('zapisano do bazy!');
-  } catch(error) {
+  } catch (error) {
     console.log(`Error! Something goes wrong while saving into database.`);
   }
 }
@@ -25,4 +24,4 @@ async function saveTodosIntoDatabase(todos) {
 module.exports = {
   getTodosFromDatabase,
   saveTodosIntoDatabase,
-}
+};
